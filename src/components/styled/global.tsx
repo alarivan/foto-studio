@@ -1,9 +1,18 @@
 import React from "react"
-import { Global, css } from "@emotion/core"
+import { Global } from "@emotion/core"
 import emotionNormalize from "emotion-normalize"
+import { Theme } from "@src/lib/styled"
 
-const globalCSS = css`
-  ${emotionNormalize}
-`
-
-export default () => <Global styles={globalCSS} />
+export default () => (
+  <>
+    <Global styles={emotionNormalize} />
+    <Global
+      styles={(theme: Theme) => ({
+        body: {
+          fontFamily: theme.fonts.body,
+          color: theme.colors.text,
+        },
+      })}
+    />
+  </>
+)
